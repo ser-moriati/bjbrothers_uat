@@ -206,7 +206,7 @@
                                                                 </li>
                                                             @endif
                                                             <li>
-                                                                <div class="menu-item"><a href="{{url('/cart')}}/home">HOME</a></div>
+                                                                <div class="menu-item"><a href="{{url('/home')}}">HOME</a></div>
                                                             </li>
                                                             <li>
                                                                 <div class="menu-item">
