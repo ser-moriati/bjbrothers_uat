@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use App\Promotion;
-DB::beginTransaction();
+// DB::beginTransaction();
 
 class PromotionController extends Controller
 {

@@ -24,3 +24,7 @@
 .env
 /Database Backup
 /storage
+/backup
+/Database Backup
+/storage/logs
+/Database Backup
