@@ -21,3 +21,6 @@
 /public
 /admin/dropzone-5.7.0
 /admin/dropzone
+.env
+/Database Backup
+/storage
