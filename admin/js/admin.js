@@ -28,7 +28,7 @@
                type: "GET",
                url: url+"/removePin/"+id,
                success: function( result ) {
-                    // location.reload();
+                    location.reload();
                }
            });
         }else{
@@ -36,7 +36,7 @@
                type: "GET",
                url: url+"/checkPin/"+id,
                success: function( result ) {
-                    // location.reload();
+                    location.reload();
                }
            });
         }
