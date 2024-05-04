@@ -391,6 +391,8 @@ Route::prefix('admin')->group(function () {
             Route::post('insert', 'PromotionController@insert');
             Route::post('update/{id}', 'PromotionController@update');
             Route::delete('delete/{id}', 'PromotionController@destroy');
+            Route::get('checkPin/{id}', 'PromotionController@checkPin');
+            Route::get('removePin/{id}', 'PromotionController@removePin');
         });
         Route::prefix('news')->group(function () {
             Route::get('/', 'NewsController@index');

@@ -153,7 +153,7 @@ class PromotionController extends Controller
         }
     }
 
-    public function pin($id){
+    public function checkPin($id){
         foreach (Promotion::all() as $promotion) {
             $promotion->update([
                 'pin' => 0
