@@ -243,14 +243,14 @@
                             @foreach ($news as $news)
                                 <div class="col-lg-4 col-md-4 col-12">
                                     <div class="projectBox">
-                                    <a class="project-topic" href="https://www.bjbrothers.com/news#newsPage">
+                                    <a class="project-topic" href="{{ url('news') }}#newsPage">
                                             <p>NEWS &EVENTS</p>
                                     </a>
-                                        <a href="https://www.bjbrothers.com/news#newsPage"><img style="height: 268px; object-fit: cover; object-position: top;" src="{{URL::asset('upload/news/'.$news->title_image)}}"></a>
+                                        <a href="{{ url('news') }}#newsPage"><img style="height: 268px; object-fit: cover; object-position: top;" src="{{URL::asset('upload/news/'.$news->title_image)}}"></a>
                                    
                                         <div class="content-center">
                                         <br>
-                                            <a class="buttonBK mt-0" href="https://www.bjbrothers.com/news#newsPage">เพิ่มเติม</a>
+                                            <a class="buttonBK mt-0" href="{{ url('news') }}#newsPage">เพิ่มเติม</a>
                                        </div>
                                     </div>
                                 </div>
@@ -258,14 +258,14 @@
                             @foreach ($promotions as $promotions)
                                 <div class="col-lg-4 col-md-4 col-12">
                                     <div class="projectBox">
-                                    <a class="project-topic" href="https://www.bjbrothers.com/promotion#promotionPage">
+                                    <a class="project-topic" href="{{ url('promotion') }}#promotionPage">
                                     <p>PROMOTIONS</p>
                                     </a>
-                                        <a href="https://www.bjbrothers.com/promotion#promotionPage"><img style="height: 268px; object-fit: cover; object-position: top;" src="{{URL::asset('upload/promotion/'.$promotions->title_image)}}"></a>
+                                        <a href="{{ url('promotion') }}#promotionPage"><img style="height: 268px; object-fit: cover; object-position: top;" src="{{URL::asset('upload/promotion/'.$promotions->title_image)}}"></a>
                                    
                                         <div class="content-center">
                                         <br>
-                                            <a class="buttonBK mt-0" href="https://www.bjbrothers.com/promotion#promotionPage">เพิ่มเติม</a>
+                                            <a class="buttonBK mt-0" href="{{ url('promotion') }}#promotionPage">เพิ่มเติม</a>
                                        </div>
                                     </div>
                                 </div>
@@ -273,14 +273,14 @@
                             @foreach ($safetys as $safetys)
                                 <div class="col-lg-4 col-md-4 col-12">
                                     <div class="projectBox">
-                                    <a class="project-topic" href="https://www.bjbrothers.com/safety">
+                                    <a class="project-topic" href="{{ url('safety') }}">
                                             <p>KNOWLEDGES</p>
                                     </a>
-                                        <a href="https://www.bjbrothers.com/safety"><img style="height: 268px; object-fit: cover; object-position: top;" src="{{URL::asset('upload/safety/'.$safetys->safety_image)}}"></a>
+                                        <a href="{{ url('safety') }}"><img style="height: 268px; object-fit: cover; object-position: top;" src="{{URL::asset('upload/safety/'.$safetys->safety_image)}}"></a>
                                    
                                         <div class="content-center">
                                         <br>
-                                            <a class="buttonBK mt-0" href="https://www.bjbrothers.com/safety">เพิ่มเติม</a>
+                                            <a class="buttonBK mt-0" href="{{ url('safety') }}">เพิ่มเติม</a>
                                        </div>
                                     </div>
                                 </div>
