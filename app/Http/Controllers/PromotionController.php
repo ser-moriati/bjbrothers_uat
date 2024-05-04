@@ -152,4 +152,21 @@ class PromotionController extends Controller
             DB::rollBack();
         }
     }
+
+    public function pin($id){
+        foreach (Promotion::all() as $promotion) {
+            $promotion->update([
+                'pin' => 0
+            ]);
+        }
+        $promotion_pin = Promotion::find($id);
+        $promotion_pin->pin = 1;
+        $promotion_pin->save();
+    }
+
+    public function removePin($id){
+        $promotion_pin = Promotion::find($id);
+        $promotion_pin->pin = 0;
+        $promotion_pin->save();
+    }
 }

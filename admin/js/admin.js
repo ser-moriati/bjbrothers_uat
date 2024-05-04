@@ -22,6 +22,25 @@
             }
             
     }
+    function checkPin(id,url){
+        if($(this).is(':checked')){
+            $.ajax({
+               type: "GET",
+               url: url+"/removePin/"+id,
+               success: function( result ) {
+                    location.reload();
+               }
+           });
+        }else{
+            $.ajax({
+               type: "GET",
+               url: url+"/checkPin/"+id,
+               success: function( result ) {
+                    location.reload();
+               }
+           });
+        }
+    }
      function checkAll(ele) {
         var checkboxes = document.getElementsByClassName('checkbox-list');
         if (ele.checked) {
