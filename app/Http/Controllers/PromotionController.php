@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use App\Promotion;
 DB::beginTransaction();
+use DB;
 
 class PromotionController extends Controller
 {
@@ -154,19 +155,17 @@ class PromotionController extends Controller
     }
 
     public function checkPin($id){
-        foreach (Promotion::all() as $promotion) {
-            $promotion->update([
-                'pin' => 0
-            ]);
+        $promotion = DB::table('promotions')->get();
+        foreach ($promotion as $_promotion) {
+            $update_all['pin'] = 0;
+            DB::table('promotions')->where('id',$_promotion->id)->save($update_all);
         }
-        $promotion_pin = Promotion::find($id);
-        $promotion_pin->pin = 1;
-        $promotion_pin->save();
+        $update['pin'] = 1;
+        DB::table('promotions')->where('id',$id)->save($update);
     }
 
     public function removePin($id){
-        $promotion_pin = Promotion::find($id);
-        $promotion_pin->pin = 0;
-        $promotion_pin->save();
+        $update['pin'] = 0;
+        DB::table('promotions')->where('id',$id)->save($update);
     }
 }
