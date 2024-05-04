@@ -38,6 +38,15 @@ class InstallController extends Controller
         $data['install'] = Install::find($id);
         $data['meta'] = (object)['meta_title' => $data['install']->meta_title , 'meta_keywords' => $data['install']->meta_keywords , 'meta_description' => $data['install']->meta_description];
         // $data['gallery'] = InstallGallery::where('ref_install_id',$id)->get();
+        $recommend_product = array();
+        $recommend = DB::table('recommend_product')->where('recommend_ref_article',$id)->get();
+        if(!empty($recommend)){
+            foreach ($recommend as $key => $_recommend) {
+                array_push($recommend_product, $_recommend->recommend_ref_product);
+            }
+        }
+
+        $data['recommand_product'] = DB::table('products')->whereIn('id',$recommend_product)->get();
         return view('install_detail', $data);
     }
 }

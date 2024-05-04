@@ -38,18 +38,48 @@
                         <h3 class="text-center mb-5">{{$safety->safety_name}}</h3>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col">
-                        <div class="txt-content mb-5">
-                            {!! str_replace('<h6>','<div style="display: flex;">',$safety->safety_detail) !!}
+
+                {!! str_replace('<h6>','<div style="display: flex;">',$safety->safety_detail) !!}
+
+                <div class="w-100">
+                    <div class="row">
+                        <div class="col">
+                            <h3 class="text-center mb-5">สินค้าแนะนำ</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <ul class="product-page bottom-none">
+                                @foreach ($recommand_product as $recommand)
+                                <li>
+                                    <a class="productBox-BD" href="{{url('product/'.$recommand->product_name.'___'.$recommand->id)}}">
+                                        <div class="productBox">
+                                            <div class="product-img"><img src="{{URL::asset('upload/product/'.$recommand->product_image)}}"></div>
+                                            <ul class="productBox-name">
+                                                <li>
+                                                    <p>{{$recommand->product_name}}</p>
+                                                </li>
+                                                <li>{{$recommand->product_code}}</li>
+                                                @if($recommand->product_price > 0)
+                                                <li>฿ {{number_format($recommand->product_price,2)}}</li>
+                                                @else
+                                                <li><p class="price sale" style="color:#f32836;font-size: 15px;"><i>สอบถามราคาเพิ่มเติม</i></p></li>
+                                                @endif
+                                            </ul>
+                                        </div>
+                                    </a> 
+                                </li>
+                                @endforeach
+                            </ul>
                         </div>
                     </div>
                 </div>
+
                 <div class="row">
                     <div class="col">
                         <div class="doubleBD">
                             <div class="content-center">
-                                <a class="buttonBK" href="{{ url('safety/cate').'/'.$cate->id }}">ย้อนกลับ</a>
+                                <a style="display: block !important;" class="buttonBK" href="{{ url('safety/cate').'/'.$cate->id }}">ย้อนกลับ</a>
                             </div>
                         </div>
                     </div>

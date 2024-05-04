@@ -38,6 +38,15 @@ class MaintenanceController extends Controller
         $data['maintenance'] = Maintenance::find($id);
         $data['meta'] = (object)['meta_title' => $data['maintenance']->meta_title , 'meta_keywords' => $data['maintenance']->meta_keywords , 'meta_description' => $data['maintenance']->meta_description];
         // $data['gallery'] = MaintenanceGallery::where('ref_maintenance_id',$id)->get();
+        $recommend_product = array();
+        $recommend = DB::table('recommend_product')->where('recommend_ref_article',$id)->get();
+        if(!empty($recommend)){
+            foreach ($recommend as $key => $_recommend) {
+                array_push($recommend_product, $_recommend->recommend_ref_product);
+            }
+        }
+
+        $data['recommand_product'] = DB::table('products')->whereIn('id',$recommend_product)->get();
         return view('maintenance_detail', $data);
     }
 }

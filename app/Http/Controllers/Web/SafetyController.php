@@ -38,6 +38,15 @@ class SafetyController extends Controller
         $data['safety'] = Safety::find($id);
         // $data['gallery'] = SafetyGallery::where('ref_safety_id',$id)->get();
         $data['meta'] = (object)['meta_title' => $data['safety']->meta_title , 'meta_keywords' => $data['safety']->meta_keywords , 'meta_description' => $data['safety']->meta_description];
+        $recommend_product = array();
+        $recommend = DB::table('recommend_product')->where('recommend_ref_article',$id)->get();
+        if(!empty($recommend)){
+            foreach ($recommend as $key => $_recommend) {
+                array_push($recommend_product, $_recommend->recommend_ref_product);
+            }
+        }
+
+        $data['recommand_product'] = DB::table('products')->whereIn('id',$recommend_product)->get();
         return view('safety_detail', $data);
     }
 }
