@@ -36,6 +36,7 @@ class MaintenanceController extends Controller
     public function detail($cate_id, $id){
         $data['cate'] = MaintenanceCategory::find($cate_id);
         $data['maintenance'] = Maintenance::find($id);
+        $data['meta'] = (object)['meta_title' => $data['maintenance']->meta_title , 'meta_keywords' => $data['maintenance']->meta_keywords , 'meta_description' => $data['maintenance']->meta_description];
         // $data['gallery'] = MaintenanceGallery::where('ref_maintenance_id',$id)->get();
         return view('maintenance_detail', $data);
     }

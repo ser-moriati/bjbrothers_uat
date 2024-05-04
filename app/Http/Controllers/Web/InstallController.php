@@ -36,6 +36,7 @@ class InstallController extends Controller
     public function detail($cate_id, $id){
         $data['cate'] = InstallCategory::find($cate_id);
         $data['install'] = Install::find($id);
+        $data['meta'] = (object)['meta_title' => $data['install']->meta_title , 'meta_keywords' => $data['install']->meta_keywords , 'meta_description' => $data['install']->meta_description];
         // $data['gallery'] = InstallGallery::where('ref_install_id',$id)->get();
         return view('install_detail', $data);
     }

@@ -28,6 +28,8 @@ class ProjectController extends Controller
     public function detail($id){
         $data['project'] = Project::find($id);
         $data['gallery'] = ProjectGallery::where('ref_project_id',$id)->get();
+        $data['meta'] = (object)['meta_title' => $data['project']->meta_title , 'meta_keywords' => $data['project']->meta_keywords , 'meta_description' => $data['project']->meta_description];
+
         return view('project_detail', $data);
     }
 }

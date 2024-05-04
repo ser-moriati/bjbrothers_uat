@@ -37,6 +37,8 @@ class SafetyController extends Controller
         $data['cate'] = SafetyCategory::find($cate_id);
         $data['safety'] = Safety::find($id);
         // $data['gallery'] = SafetyGallery::where('ref_safety_id',$id)->get();
+        $data['meta'] = (object)['meta_title' => $data['safety']->meta_title , 'meta_keywords' => $data['safety']->meta_keywords , 'meta_description' => $data['safety']->meta_description];
+        
         return view('safety_detail', $data);
     }
 }

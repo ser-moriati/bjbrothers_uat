@@ -37,6 +37,8 @@ class TechnicalController extends Controller
         $data['cate'] = TechnicalCategory::find($cate_id);
         $data['technical'] = Technical::find($id);
         // $data['gallery'] = TechnicalGallery::where('ref_technical_id',$id)->get();
+        $data['meta'] = (object)['meta_title' => $data['technical']->meta_title , 'meta_keywords' => $data['technical']->meta_keywords , 'meta_description' => $data['technical']->meta_description];
+        
         return view('technical_detail', $data);
     }
 }

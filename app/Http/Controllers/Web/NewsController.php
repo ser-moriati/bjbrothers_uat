@@ -21,6 +21,7 @@ class NewsController extends Controller
     }
     public function detail($id){
         $data['news'] = News::find($id);
+        $data['meta'] = (object)['meta_title' => $data['news']->meta_title , 'meta_keywords' => $data['news']->meta_keywords , 'meta_description' => $data['news']->meta_description];
         return view('news_detail', $data);
     }
 }
