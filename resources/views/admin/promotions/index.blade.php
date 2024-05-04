@@ -113,10 +113,13 @@
                                         </div>
                                     </td>
                                     <td>{{$num++}}</td>
-                                    <?php $url = url("admin/promotion"); ?>
+                                    <?php 
+                                        $url = url("admin/promotion"); 
+                                        $checked = ($value->pin == 1 ? 'checked' : 'unchecked' );
+                                    ?>
                                     <td>
                                         <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input checkbox-list" {{ ($value->pin == 1 ? 'checked' : '' ) }} onchange="checkPin('{{$value->id}}','{{ $url }}')" id="custom_{{$num}}">
+                                        <input type="checkbox" class="custom-control-input checkbox-list" {{ ($value->pin == 1 ? 'checked' : '' ) }} onchange="checkPin('{{$value->id}}','{{$url}}, {{$checked}}')" id="custom_{{$num}}">
                                             <label class="custom-control-label" for="custom_{{$num}}">&nbsp;</label>
                                         </div>
                                     </td>

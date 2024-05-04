@@ -22,8 +22,8 @@
             }
             
     }
-    function checkPin(id,url){
-        if($(this).is(':checked')){
+    function checkPin(id,url,checked){
+        if(checked == 'checked'){
             $.ajax({
                type: "GET",
                url: url+"/removePin/"+id,
