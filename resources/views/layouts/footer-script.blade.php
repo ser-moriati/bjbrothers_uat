@@ -8,6 +8,7 @@
         <script src="{{ URL::asset('assets/libs/node-waves/waves.min.js')}}"></script>
         <script src="{{ URL::asset('admin/js/admin.js')}}"></script>
         <script src="{{ URL::asset('assets/libs/parsleyjs/parsley.min.js')}}"></script>
+        <script src="{{ URL::asset('assets/select2/dist/js/select2.full.min.js')}}"></script>
         @yield('script')
 
         <!-- App js -->

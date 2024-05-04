@@ -157,6 +157,12 @@
             }   
         });
     }
+
+    $(document).ready(function(){
+        $('.select2').select2({
+            multiple: true
+        });
+    });
     
         // function formfocus() {
         //     $('html, body').animate({ // สร้างการเคลื่อนไหว

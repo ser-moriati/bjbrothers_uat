@@ -88,13 +88,13 @@
                                         </div>
                                     </th>
                                     <th>#</th>
-                                    <th>Picture</th>
-                                    <th>Name</th>
-                                    {{-- <th>Detail</th> --}}
-                                    <th>Category</th>
-                                    <th>Created</th>
-                                    <th>Updated</th>
-                                    <th>Action</th>
+                                    <th>หน้าแรก</th>
+                                    <th>ภาพ</th>
+                                    <th width="40%">หัวข้อ</th>
+                                    <th>หมวดหมู่</th>
+                                    <th>สร้างโดย</th>
+                                    <th>แก้ไข</th>
+                                    <th>เครื่องมือ</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -108,6 +108,16 @@
                                         </div>
                                     </td>
                                     <td>{{$num++}}</td>
+                                    <?php 
+                                        $url = url("admin/safety"); 
+                                        $checked = ($value->pin == 1 ? 'checked' : 'unchecked' );
+                                    ?>
+                                    <td>
+                                        <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input checkbox-list" {{ ($value->pin == 1 ? 'checked' : '' ) }} onchange="checkPin('{{$value->id}}','{{$url}}','{{$checked}}')" id="custom_{{$num}}">
+                                            <label class="custom-control-label" for="custom_{{$num}}">&nbsp;</label>
+                                        </div>
+                                    </td>
                                     <td>
                                         <div class="zoom-gallery">
                                         {{-- <img src="{{URL::asset('upload/'.$page_url)}}/{{$value->safety_image}}" alt=""> --}}
@@ -115,7 +125,6 @@
                                         </div>
                                     </td>
                                     <td>{{$value->safety_name}}</td>
-                                    {{-- <td>@empty(!$value->safety_detail){{iconv_substr(str_replace("|i|"," | ",$value->safety_detail), 0, 30, "UTF-8")}}...  @endempty</td> --}}
                                     <td>{{$value->safety_category_name}}</td>
                                     <td>
                                         {{$value->created_at}}

@@ -401,6 +401,8 @@ Route::prefix('admin')->group(function () {
             Route::post('insert', 'NewsController@insert');
             Route::post('update/{id}', 'NewsController@update');
             Route::delete('delete/{id}', 'NewsController@destroy');
+            Route::get('checkPin/{id}', 'NewsController@checkPin');
+            Route::get('removePin/{id}', 'NewsController@removePin');
         });
         Route::prefix('project')->group(function () {
             Route::get('/', 'ProjectController@index');
@@ -431,6 +433,8 @@ Route::prefix('admin')->group(function () {
             Route::delete('delete/{id}', 'SafetyController@destroy');
             Route::post('uploadGallery', 'SafetyController@uploadGallery');
             Route::get('deleteGallery', 'SafetyController@deleteGallery');
+            Route::get('checkPin/{id}', 'SafetyController@checkPin');
+            Route::get('removePin/{id}', 'SafetyController@removePin');
         });
         Route::prefix('safetycategory')->group(function () {
             Route::get('/', 'SafetyCategoryController@index');

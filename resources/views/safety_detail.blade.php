@@ -49,7 +49,7 @@
                     <div class="col">
                         <div class="doubleBD">
                             <div class="content-center">
-                                <a class="buttonBK" href="/safety/cate/{{$cate->id}}">ย้อนกลับ</a>
+                                <a class="buttonBK" href="{{ url('safety/cate').'/'.$cate->id }}">ย้อนกลับ</a>
                             </div>
                         </div>
                     </div>

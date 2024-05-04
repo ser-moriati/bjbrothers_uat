@@ -54,7 +54,7 @@
                 </div>
                 <div class="col-lg-7 col-12">
                     <div class="img-width" id="banner">
-                        <img src="images/product/banner-newarrival.jpg">
+                        <img src="{{ asset('images/product/banner-newarrival.jpg') }}">
                         <!-- FOR MOBILE -->
                         <div class="gradient-banner mobile">
                             <div class="banner-topic">สินค้าใหม่</div>
@@ -89,10 +89,10 @@
                             <li>
                                 <a class="productBox-BD" href="{{url('product/'.str_replace(['#','/'],'',$pro->product_name).'-'.$pro->product_code.'___'.$pro->id)}}">
                                             @if ($pro->product_hot)
-                                                <div class="tag"><img src="/images/product/tag-hot.png"></div>
+                                                <div class="tag"><img src="{{ asset('images/product/tag-hot.png') }}"></div>
                                             @endif
                                             @if ($pro->product_new)
-                                                <div class="tag"><img src="/images/product/tag-new.png"></div>
+                                                <div class="tag"><img src="{{ asset('images/product/tag-new.png') }}"></div>
                                             @endif
                                     <div class="productBox">
                                         <div class="product-img">

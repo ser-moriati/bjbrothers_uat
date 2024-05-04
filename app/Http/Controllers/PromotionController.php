@@ -6,7 +6,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use App\Promotion;
-// DB::beginTransaction();
+use Auth;
+DB::beginTransaction();
 
 class PromotionController extends Controller
 {
@@ -48,7 +49,7 @@ class PromotionController extends Controller
         $data['page'] = 'Promotion Add';
         $data['page_url'] = $this->module();
         $data['action'] = "insert";
-
+        $data['product'] = DB::table('products')->select('id','product_code','product_name')->whereNotNull('product_name')->orderBy('product_code','DESC')->get();
         return view('admin/promotions/add', $data);
     }
     public function edit($id)
@@ -63,7 +64,17 @@ class PromotionController extends Controller
 
         $data['promotion']->workplace = explode('|i|',$data['promotion']->workplace);
         $data['promotion']->description = explode('|i|',$data['promotion']->description);
-
+        $data['product'] = DB::table('products')->select('id','product_code','product_name')->whereNotNull('product_code')->orderBy('product_code','DESC')->get();
+        
+        $recommend_product = array();
+        $recommend = DB::table('recommend_product')->where('recommend_ref_article',$id)->get();
+        if(!empty($recommend)){
+            foreach ($recommend as $key => $_recommend) {
+                array_push($recommend_product, $_recommend->recommend_ref_product);
+            }
+        }
+        $data['recommend_product'] = $recommend_product;
+        
         return view('admin/promotions/add', $data);
     }
     public function insert(Request $request)
@@ -89,6 +100,18 @@ class PromotionController extends Controller
             $promotion->meta_keywords = $request->meta_keywords;
             $promotion->meta_description = $request->meta_description;
             $promotion->save();
+            $lasted = DB::table('promotions')->orderBy('id','DESC')->first();
+            if(!empty($request->recommend_ref_product)){
+                foreach ($request->recommend_ref_product as $key => $_recommend_ref_product) {
+                    $data['recommend_ref_article'] = $lasted->id;
+                    $data['recommend_ref_product'] = $_recommend_ref_product;
+                    $data['recommend_sort'] = $key;
+                    $data['recommend_createby'] = Auth::user()->name;
+                    $data['recommend_created'] = date('Y-m-d H:i:s');
+                    DB::table('recommend_product')->insert($data);
+                }
+            }
+
             DB::commit();
             if(@$file) $file->move($path, $title_image_name);
             return redirect('admin/promotion')->with('message', 'Insert promotion "'.$request->title.'" success');
@@ -126,6 +149,18 @@ class PromotionController extends Controller
             $promotion->meta_description = $request->meta_description;
             $promotion->save();
 
+            DB::table('recommend_product')->where('recommend_ref_article',$id)->delete();
+            if(!empty($request->recommend_ref_product)){
+                foreach ($request->recommend_ref_product as $key => $_recommend_ref_product) {
+                    $data['recommend_ref_article'] = $id;
+                    $data['recommend_ref_product'] = $_recommend_ref_product;
+                    $data['recommend_sort'] = $key;
+                    $data['recommend_createby'] = Auth::user()->name;
+                    $data['recommend_created'] = date('Y-m-d H:i:s');
+                    DB::table('recommend_product')->insert($data);
+                }
+            }
+
             DB::commit();
             
             if(!is_null($request->file('title_image'))){
@@ -161,10 +196,12 @@ class PromotionController extends Controller
         }
         $update['pin'] = 1;
         DB::table('promotions')->where('id',$id)->update($update);
+        DB::commit();
     }
 
     public function removePin($id){
         $update['pin'] = 0;
         DB::table('promotions')->where('id',$id)->update($update);
+        DB::commit();
     }
 }

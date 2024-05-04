@@ -246,7 +246,7 @@
                                     <a class="project-topic" href="https://www.bjbrothers.com/news#newsPage">
                                             <p>NEWS &EVENTS</p>
                                     </a>
-                                        <a href="https://www.bjbrothers.com/news#newsPage"><img src="{{URL::asset('upload/news/'.$news->title_image)}}"></a>
+                                        <a href="https://www.bjbrothers.com/news#newsPage"><img style="height: 268px; object-fit: cover; object-position: top;" src="{{URL::asset('upload/news/'.$news->title_image)}}"></a>
                                    
                                         <div class="content-center">
                                         <br>
@@ -261,7 +261,7 @@
                                     <a class="project-topic" href="https://www.bjbrothers.com/promotion#promotionPage">
                                     <p>PROMOTIONS</p>
                                     </a>
-                                        <a href="https://www.bjbrothers.com/promotion#promotionPage"><img src="{{URL::asset('upload/promotion/'.$promotions->title_image)}}"></a>
+                                        <a href="https://www.bjbrothers.com/promotion#promotionPage"><img style="height: 268px; object-fit: cover; object-position: top;" src="{{URL::asset('upload/promotion/'.$promotions->title_image)}}"></a>
                                    
                                         <div class="content-center">
                                         <br>
@@ -276,7 +276,7 @@
                                     <a class="project-topic" href="https://www.bjbrothers.com/safety">
                                             <p>KNOWLEDGES</p>
                                     </a>
-                                        <a href="https://www.bjbrothers.com/safety"><img src="https://www.bjbrothers.com/upload/safety/carfirer.jpg"></a>
+                                        <a href="https://www.bjbrothers.com/safety"><img style="height: 268px; object-fit: cover; object-position: top;" src="{{URL::asset('upload/safety/'.$safetys->safety_image)}}"></a>
                                    
                                         <div class="content-center">
                                         <br>

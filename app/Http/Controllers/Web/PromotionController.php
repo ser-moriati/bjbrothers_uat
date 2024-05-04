@@ -22,6 +22,16 @@ class PromotionController extends Controller
     public function detail($id){
         $data['promotion'] = Promotion::find($id);
         $data['meta'] = (object)['meta_title' => $data['promotion']->meta_title , 'meta_keywords' => $data['promotion']->meta_keywords , 'meta_description' => $data['promotion']->meta_description];
+        
+        $recommend_product = array();
+        $recommend = DB::table('recommend_product')->where('recommend_ref_article',$id)->get();
+        if(!empty($recommend)){
+            foreach ($recommend as $key => $_recommend) {
+                array_push($recommend_product, $_recommend->recommend_ref_product);
+            }
+        }
+
+        $data['recommand_product'] = DB::table('products')->whereIn('id',$recommend_product)->get();
         return view('promotion_detail', $data);
     }
 }

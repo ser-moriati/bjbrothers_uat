@@ -94,12 +94,12 @@
                                         </div>
                                     </th>
                                     <th>#</th>
-                                    <th>Picture</th>
-                                    <th width="40%">title</th>
-                                    <th>deail</th>
-                                    <th>Created</th>
-                                    <th>Updated</th>
-                                    <th>Action</th>
+                                    <th>หน้าแรก</th>
+                                    <th>ภาพ</th>
+                                    <th width="40%">หัวข้อ</th>
+                                    <th>สร้างโดย</th>
+                                    <th>แก้ไข</th>
+                                    <th>เครื่องมือ</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -113,6 +113,16 @@
                                         </div>
                                     </td>
                                     <td>{{$num++}}</td>
+                                    <?php 
+                                        $url = url("admin/news"); 
+                                        $checked = ($value->pin == 1 ? 'checked' : 'unchecked' );
+                                    ?>
+                                    <td>
+                                        <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input checkbox-list" {{ ($value->pin == 1 ? 'checked' : '' ) }} onchange="checkPin('{{$value->id}}','{{$url}}','{{$checked}}')" id="custom_{{$num}}">
+                                            <label class="custom-control-label" for="custom_{{$num}}">&nbsp;</label>
+                                        </div>
+                                    </td>
                                     <td>
                                         <div class="zoom-gallery">
                                         {{-- <img src="{{URL::asset('upload/'.$page_url)}}/{{$value->title_image}}" alt=""> --}}
@@ -120,7 +130,6 @@
                                         </div>
                                     </td>
                                     <td>{{$value->title}}</td>
-                                    <td>@empty(!$value->detail)<?php echo iconv_substr($value->detail, 0, 40, "UTF-8")?>...  @endempty</td>
                                     <td>
                                         {{$value->created_at}}
                                     </td>

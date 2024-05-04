@@ -2,9 +2,9 @@
     <div class="col">
         <ul class="submenuBox mobile-s mb-5">
             <li data-page="safe">
-                <a class="doubleBox-BD" href="/safety#safePage">
+                <a class="doubleBox-BD" href="{{ url('safety') }}#safePage">
                     <div class="doubleBox">
-                        <div class="img-center"><img src="/images/knowledge/icon-safety.png"></div>
+                        <div class="img-center"><img src="{{ asset('images/knowledge/icon-safety.png') }}"></div>
                         <div class="box-topic">
                             <p>Safety Tips</p>
                         </div>
@@ -12,9 +12,9 @@
                 </a>
             </li>
             <li data-page="technic">
-                <a class="doubleBox-BD" href="/technical#techPage">
+                <a class="doubleBox-BD" href="{{ url('technical') }}#techPage">
                     <div class="doubleBox">
-                        <div class="img-center"><img src="/images/knowledge/icon-technical.png"></div>
+                        <div class="img-center"><img src="{{ asset('images/knowledge/icon-technical.png') }}"></div>
                         <div class="box-topic">
                             <p>Work guru</p>
                         </div>
@@ -22,9 +22,9 @@
                 </a>
             </li>
             <li data-page="maintenance">
-                <a class="doubleBox-BD" href="/maintenance#maintenancePage">
+                <a class="doubleBox-BD" href="{{ url('maintenance') }}#maintenancePage">
                     <div class="doubleBox">
-                        <div class="img-center"><img src="/images/knowledge/icon-maintenance.png"></div>
+                        <div class="img-center"><img src="{{ asset('images/knowledge/icon-maintenance.png') }}"></div>
                         <div class="box-topic">
                             <p>Maintenance Tips</p>
                         </div>
@@ -32,9 +32,9 @@
                 </a>
             </li>
             <li data-page="install">
-                <a class="doubleBox-BD" href="/install#installPage">
+                <a class="doubleBox-BD" href="{{ url('install') }}#installPage">
                     <div class="doubleBox">
-                        <div class="img-center"><img src="/images/knowledge/icon-install.png"></div>
+                        <div class="img-center"><img src="{{ asset('images/knowledge/icon-install.png') }}"></div>
                         <div class="box-topic">
                             <p>Installation Tips</p>
                         </div>
@@ -42,9 +42,9 @@
                 </a>
             </li>
             <li data-page="catalogue">
-                <a class="doubleBox-BD" href="/ecatalogue#cataloguePage">
+                <a class="doubleBox-BD" href="{{ url('ecatalogue') }}#cataloguePage">
                     <div class="doubleBox">
-                        <div class="img-center"><img src="/images/knowledge/icon-ecatalogue.png"></div>
+                        <div class="img-center"><img src="{{ asset('images/knowledge/icon-ecatalogue.png') }}"></div>
                         <div class="box-topic">
                             <p>E-Catalogue</p>
                         </div>

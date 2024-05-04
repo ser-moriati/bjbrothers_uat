@@ -13,6 +13,7 @@ use App\SubCategory;
 use App\Brand;
 use App\Color;
 use App\Size;
+use Auth;
 DB::beginTransaction();
 
 class TechnicalController extends Controller
@@ -50,6 +51,7 @@ class TechnicalController extends Controller
         $data['page_url'] = 'technical Add';
         $data['action'] = "insert";
         $data['technical_category'] = TechnicalCategory::orderBy('id','DESC')->get();
+        $data['product'] = DB::table('products')->select('id','product_code','product_name')->whereNotNull('product_name')->orderBy('product_code','DESC')->get();
         return view('admin/technicals/add', $data);
     }
     public function edit($id)
@@ -60,7 +62,17 @@ class TechnicalController extends Controller
         $data['page_url'] = 'technical';
         $data['action'] = "../update/$id";
         $data['technical_category'] = TechnicalCategory::orderBy('id','DESC')->get();
+        $data['product'] = DB::table('products')->select('id','product_code','product_name')->whereNotNull('product_name')->orderBy('product_code','DESC')->get();
         $data['technical'] = Technical::find($id);
+
+        $recommend_product = array();
+        $recommend = DB::table('recommend_product')->where('recommend_ref_article',$id)->get();
+        if(!empty($recommend)){
+            foreach ($recommend as $key => $_recommend) {
+                array_push($recommend_product, $_recommend->recommend_ref_product);
+            }
+        }
+        $data['recommend_product'] = $recommend_product;
 
         return view('admin/technicals/add', $data);
     }
@@ -85,6 +97,18 @@ class TechnicalController extends Controller
             $technical->meta_description = $request->meta_description;
             $technical->ref_category_id = $request->category_id;
             $technical->save();
+
+            $lasted = DB::table('technicals')->orderBy('id','DESC')->first();
+            if(!empty($request->recommend_ref_product)){
+                foreach ($request->recommend_ref_product as $key => $_recommend_ref_product) {
+                    $data['recommend_ref_article'] = $lasted->id;
+                    $data['recommend_ref_product'] = $_recommend_ref_product;
+                    $data['recommend_sort'] = $key;
+                    $data['recommend_createby'] = Auth::user()->name;
+                    $data['recommend_created'] = date('Y-m-d H:i:s');
+                    DB::table('recommend_product')->insert($data);
+                }
+            }
 
             DB::commit();
             if(@$file) $file->move($path, $technical_image_name);
@@ -125,6 +149,18 @@ class TechnicalController extends Controller
                 $technical->technical_image = $technical_image_name;
             }
             $technical->save();
+
+            DB::table('recommend_product')->where('recommend_ref_article',$id)->delete();
+            if(!empty($request->recommend_ref_product)){
+                foreach ($request->recommend_ref_product as $key => $_recommend_ref_product) {
+                    $data['recommend_ref_article'] = $id;
+                    $data['recommend_ref_product'] = $_recommend_ref_product;
+                    $data['recommend_sort'] = $key;
+                    $data['recommend_createby'] = Auth::user()->name;
+                    $data['recommend_created'] = date('Y-m-d H:i:s');
+                    DB::table('recommend_product')->insert($data);
+                }
+            }
 
             if(!is_null($request->file('technical_image'))){
                 @unlink("$path/$lastImage");

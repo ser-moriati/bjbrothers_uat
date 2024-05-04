@@ -13,6 +13,7 @@ use App\SubCategory;
 use App\Brand;
 use App\Color;
 use App\Size;
+use Auth;
 use Illuminate\Database\QueryException;
 
 DB::beginTransaction();
@@ -52,6 +53,7 @@ class InstallController extends Controller
         $data['page_url'] = 'install Add';
         $data['action'] = "insert";
         $data['install_category'] = InstallCategory::orderBy('id','DESC')->get();
+        $data['product'] = DB::table('products')->select('id','product_code','product_name')->whereNotNull('product_name')->orderBy('product_code','DESC')->get();
         return view('admin/installs/add', $data);
     }
     public function edit($id)
@@ -62,6 +64,15 @@ class InstallController extends Controller
         $data['page_url'] = 'install';
         $data['action'] = "../update/$id";
         $data['install_category'] = InstallCategory::orderBy('id','DESC')->get();
+        $data['product'] = DB::table('products')->select('id','product_code','product_name')->whereNotNull('product_name')->orderBy('product_code','DESC')->get();
+        $recommend_product = array();
+        $recommend = DB::table('recommend_product')->where('recommend_ref_article',$id)->get();
+        if(!empty($recommend)){
+            foreach ($recommend as $key => $_recommend) {
+                array_push($recommend_product, $_recommend->recommend_ref_product);
+            }
+        }
+        $data['recommend_product'] = $recommend_product;
         $data['install'] = Install::find($id);
 
         return view('admin/installs/add', $data);
@@ -88,6 +99,18 @@ class InstallController extends Controller
             $install->meta_description = $request->meta_description;
             $install->ref_category_id = $request->category_id;
             $install->save();
+
+            $lasted = DB::table('installs')->orderBy('id','DESC')->first();
+            if(!empty($request->recommend_ref_product)){
+                foreach ($request->recommend_ref_product as $key => $_recommend_ref_product) {
+                    $data['recommend_ref_article'] = $lasted->id;
+                    $data['recommend_ref_product'] = $_recommend_ref_product;
+                    $data['recommend_sort'] = $key;
+                    $data['recommend_createby'] = Auth::user()->name;
+                    $data['recommend_created'] = date('Y-m-d H:i:s');
+                    DB::table('recommend_product')->insert($data);
+                }
+            }
 
             DB::commit();
             if(@$file) $file->move($path, $install_image_name);
@@ -127,6 +150,18 @@ class InstallController extends Controller
                 $install->install_image = $install_image_name;
             }
             $install->save();
+
+            DB::table('recommend_product')->where('recommend_ref_article',$id)->delete();
+            if(!empty($request->recommend_ref_product)){
+                foreach ($request->recommend_ref_product as $key => $_recommend_ref_product) {
+                    $data['recommend_ref_article'] = $id;
+                    $data['recommend_ref_product'] = $_recommend_ref_product;
+                    $data['recommend_sort'] = $key;
+                    $data['recommend_createby'] = Auth::user()->name;
+                    $data['recommend_created'] = date('Y-m-d H:i:s');
+                    DB::table('recommend_product')->insert($data);
+                }
+            }
 
             if(!is_null($request->file('install_image'))){
                 @unlink("$path/$lastImage");

@@ -44,7 +44,7 @@
                     <div class="col">
                         <div class="doubleBD">
                             <div class="content-center">
-                                <a class="buttonBK" href="/install/cate/{{$cate->id}}">ย้อนกลับ</a>
+                                <a class="buttonBK" href="{{ url('install/cate').'/'.$cate->id }}">ย้อนกลับ</a>
                             </div>
                         </div>
                     </div>

@@ -97,9 +97,9 @@
                                     <th>หน้าแรก</th>
                                     <th>ภาพ</th>
                                     <th width="40%">หัวข้อ</th>
-                                    <th>Created</th>
-                                    <th>Updated</th>
-                                    <th>Action</th>
+                                    <th>สร้างโดย</th>
+                                    <th>แก้ไข</th>
+                                    <th>เครื่องมือ</th>
                                 </tr>
                             </thead>
                             <tbody>

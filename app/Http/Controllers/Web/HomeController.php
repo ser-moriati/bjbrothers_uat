@@ -69,9 +69,9 @@ class HomeController extends Controller
         $data['category'] = Category::select('id','category_name','image_home')->orderBy('sort',"ASC")->get();
         $data['project'] = Project::orderBy('id','DESC')->limit(3)->get();
         $data['banner'] =  DB::table('banner')->orderBy('banner_id','DESC')->get();
-        $data['safetys'] =  DB::table('safetys')->orderBy('id','DESC')->limit(1)->get();
-        $data['promotions'] =  DB::table('promotions')->orderBy('id','DESC')->limit(1)->get();
-        $data['news'] =  DB::table('news')->orderBy('id','DESC')->limit(1)->get();
+        $data['safetys'] =  DB::table('safetys')->orwhere('pin',1)->orderBy('id','DESC')->limit(1)->get();
+        $data['promotions'] =  DB::table('promotions')->orwhere('pin',1)->orderBy('id','DESC')->limit(1)->get();
+        $data['news'] =  DB::table('news')->orwhere('pin',1)->orderBy('id','DESC')->limit(1)->get();
         $home_has_promotion = HomeHasPromotion::orderBy('id','ASC')->limit(3)->get();
         foreach($home_has_promotion as $home_has){
             if($home_has->module == 'news'){

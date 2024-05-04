@@ -62,7 +62,7 @@
                         @foreach ($safety as $safe)                            
                         <div class="col-lg-4 col-md-4 col-6">
                             <a class="knowBox" href="{{url('safety/'.$cate_id.'/'.$safe->id)}}">
-                                <div class="know-img"><img src="/upload/safety/{{$safe->safety_image}}"></div>
+                                <div class="know-img"><img src="{{ asset('upload/safety').'/'.$safe->safety_image }}"></div>
                                 <div class="download-topic">
                                     <p>{{$safe->safety_name}}</p>
                                 </div>

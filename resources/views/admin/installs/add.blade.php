@@ -132,6 +132,24 @@
                         </div>
                     </div>
                 </div>     
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="recommend_product">สินค้าแนะนำ</label>
+                                    <select id="recommend_product" name="recommend_ref_product[]" multiple class="form-control select2">
+                                    @if(!empty($product))
+                                        @foreach($product as $_product)
+                                            <option <?php echo (in_array($_product->id, $recommend_product) ? 'selected' : ''); ?> value="{{ $_product->id }}">{{ $_product->product_code.' : '.$_product->product_name }}</option> 
+                                        @endforeach
+                                    @endif
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>  
                 <div class="col-sm-12">
                     <div class="form-group">
                         <button class="btn btn-primary" id="submitBtn">Save</button> &nbsp; &nbsp; 

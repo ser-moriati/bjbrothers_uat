@@ -13,6 +13,7 @@ use App\SubCategory;
 use App\Brand;
 use App\Color;
 use App\Size;
+use Auth;
 DB::beginTransaction();
 
 class SafetyController extends Controller
@@ -50,6 +51,7 @@ class SafetyController extends Controller
         $data['page_url'] = 'safety Add';
         $data['action'] = "insert";
         $data['safety_category'] = SafetyCategory::orderBy('id','DESC')->get();
+        $data['product'] = DB::table('products')->select('id','product_code','product_name')->whereNotNull('product_name')->orderBy('product_code','DESC')->get();
         return view('admin/safetys/add', $data);
     }
     public function edit($id)
@@ -61,6 +63,16 @@ class SafetyController extends Controller
         $data['action'] = "../update/$id";
         $data['safety_category'] = SafetyCategory::orderBy('id','DESC')->get();
         $data['safety'] = Safety::find($id);
+        $data['product'] = DB::table('products')->select('id','product_code','product_name')->whereNotNull('product_code')->orderBy('product_code','DESC')->get();
+        
+        $recommend_product = array();
+        $recommend = DB::table('recommend_product')->where('recommend_ref_article',$id)->get();
+        if(!empty($recommend)){
+            foreach ($recommend as $key => $_recommend) {
+                array_push($recommend_product, $_recommend->recommend_ref_product);
+            }
+        }
+        $data['recommend_product'] = $recommend_product;
 
         return view('admin/safetys/add', $data);
     }
@@ -85,6 +97,18 @@ class SafetyController extends Controller
             $safety->meta_description = $request->meta_description;
             $safety->ref_category_id = $request->category_id;
             $safety->save();
+
+            $lasted = DB::table('safetys')->orderBy('id','DESC')->first();
+            if(!empty($request->recommend_ref_product)){
+                foreach ($request->recommend_ref_product as $key => $_recommend_ref_product) {
+                    $data['recommend_ref_article'] = $lasted->id;
+                    $data['recommend_ref_product'] = $_recommend_ref_product;
+                    $data['recommend_sort'] = $key;
+                    $data['recommend_createby'] = Auth::user()->name;
+                    $data['recommend_created'] = date('Y-m-d H:i:s');
+                    DB::table('recommend_product')->insert($data);
+                }
+            }
 
             if(@$file) $file->move($path, $safety_image_name);
             DB::commit();
@@ -125,6 +149,18 @@ class SafetyController extends Controller
             }
             $safety->save();
 
+            DB::table('recommend_product')->where('recommend_ref_article',$id)->delete();
+            if(!empty($request->recommend_ref_product)){
+                foreach ($request->recommend_ref_product as $key => $_recommend_ref_product) {
+                    $data['recommend_ref_article'] = $id;
+                    $data['recommend_ref_product'] = $_recommend_ref_product;
+                    $data['recommend_sort'] = $key;
+                    $data['recommend_createby'] = Auth::user()->name;
+                    $data['recommend_created'] = date('Y-m-d H:i:s');
+                    DB::table('recommend_product')->insert($data);
+                }
+            }
+
             if(!is_null($request->file('safety_image'))){
                 @unlink("$path/$lastImage");
                 $file->move($path, $safety_image_name);
@@ -157,5 +193,21 @@ class SafetyController extends Controller
         } catch (QueryException $err) {
             DB::rollBack();
         }
+    }
+    public function checkPin($id){
+        $promotion = DB::table('safetys')->get();
+        foreach ($promotion as $_promotion) {
+            $update_all['pin'] = 0;
+            DB::table('safetys')->where('id',$_promotion->id)->update($update_all);
+        }
+        $update['pin'] = 1;
+        DB::table('safetys')->where('id',$id)->update($update);
+        DB::commit();
+    }
+
+    public function removePin($id){
+        $update['pin'] = 0;
+        DB::table('safetys')->where('id',$id)->update($update);
+        DB::commit();
     }
 }
