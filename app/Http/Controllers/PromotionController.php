@@ -157,14 +157,14 @@ class PromotionController extends Controller
         $promotion = DB::table('promotions')->get();
         foreach ($promotion as $_promotion) {
             $update_all['pin'] = 0;
-            DB::table('promotions')->where('id',$_promotion->id)->save($update_all);
+            DB::table('promotions')->where('id',$_promotion->id)->update($update_all);
         }
         $update['pin'] = 1;
-        DB::table('promotions')->where('id',$id)->save($update);
+        DB::table('promotions')->where('id',$id)->update($update);
     }
 
     public function removePin($id){
         $update['pin'] = 0;
-        DB::table('promotions')->where('id',$id)->save($update);
+        DB::table('promotions')->where('id',$id)->update($update);
     }
 }
