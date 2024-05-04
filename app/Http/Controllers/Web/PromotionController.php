@@ -21,6 +21,7 @@ class PromotionController extends Controller
     }
     public function detail($id){
         $data['promotion'] = Promotion::find($id);
+        $data['meta'] = (object)['meta_title' => $data['promotion']->meta_title , 'meta_keywords' => $data['promotion']->meta_keywords , 'meta_description' => $data['promotion']->meta_description];
         return view('promotion_detail', $data);
     }
 }
