@@ -287,15 +287,6 @@
                             @endforeach                             
                         </div>
                     </div>
-                    <!-- <div class="w-100">
-                        <div class="row">
-                            <div class="col">
-                                <div class="content-center">
-                                    <a class="buttonBK mt-0" href="/">ดูทั้งหมด</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
                 </section>
             </div>
                 
@@ -322,7 +313,7 @@
                 '<i class="fas fa-chevron-left"></i>',
                 '<i class="fas fa-chevron-right"></i>'
             ],
-            dots: true,
+            dots: false,
             smartSpeed: 3000,
             autoplayTimeout: 15000,
             responsive: {
@@ -357,7 +348,7 @@
                 '<i class="fas fa-chevron-left"></i>',
                 '<i class="fas fa-chevron-right"></i>'
             ],
-            dots: true,
+            dots: false,
             smartSpeed: 750,
             autoplayTimeout: 1500,
             responsive: {
@@ -391,7 +382,7 @@
                 '<i class="fas fa-chevron-left"></i>',
                 '<i class="fas fa-chevron-right"></i>'
             ],
-            dots: true,
+            dots: false,
             smartSpeed: 500,
             autoplayTimeout: 1000,
             responsive: {
