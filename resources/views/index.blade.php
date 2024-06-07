@@ -322,7 +322,7 @@
                 '<i class="fas fa-chevron-left"></i>',
                 '<i class="fas fa-chevron-right"></i>'
             ],
-            dots: true,
+            dots: false,
             smartSpeed: 3000,
             autoplayTimeout: 15000,
             responsive: {
@@ -357,7 +357,7 @@
                 '<i class="fas fa-chevron-left"></i>',
                 '<i class="fas fa-chevron-right"></i>'
             ],
-            dots: true,
+            dots: false,
             smartSpeed: 750,
             autoplayTimeout: 1500,
             responsive: {
@@ -391,7 +391,7 @@
                 '<i class="fas fa-chevron-left"></i>',
                 '<i class="fas fa-chevron-right"></i>'
             ],
-            dots: true,
+            dots: false,
             smartSpeed: 500,
             autoplayTimeout: 1000,
             responsive: {
