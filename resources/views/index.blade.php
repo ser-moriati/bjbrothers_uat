@@ -287,15 +287,6 @@
                             @endforeach                             
                         </div>
                     </div>
-                    <!-- <div class="w-100">
-                        <div class="row">
-                            <div class="col">
-                                <div class="content-center">
-                                    <a class="buttonBK mt-0" href="/">ดูทั้งหมด</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
                 </section>
             </div>
                 
