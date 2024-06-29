@@ -78,17 +78,16 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
+                                    <label for="nameImg">Name image <span class="required">*</span></label>
+                                    <input type="text" class="form-control" value="{{pathinfo(@$row->banner_name, PATHINFO_FILENAME)}}" id="nameImg" name="banner_name_name" required>
+                                </div>
+                                <div class="form-group">
                                         <label for="nameImg">URL <span class="required">*</span></label>
                                         <input type="text" class="form-control"  id="url" name="url" value="{{$row->banner_URL}}" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="nameImg">ALT (for SEO)</label>
                                     <input type="text" class="form-control"  id="alt" name="alt" value="{{$row->banner_alt}}" >
-                                </div>
-                                <div class="form-group">
-                                    <label for="nameImg">Name image <span class="required">*</span></label>
-                                    <input type="text" class="form-control" value="{{pathinfo(@$row->banner_name, PATHINFO_FILENAME)}}" id="nameImg" name="banner_name_name" required>
-                                    {{-- @if (@$row->product_image) readonly @endif  --}}
                                 </div>
                                 @endforeach
                             </div>
