@@ -72,6 +72,23 @@
                                     </div>
                                     <span class="required"> &nbsp; Suitable scale 1600 x 650 pixels</span>
                                 </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                        <label for="nameImg">URL <span class="required">*</span></label>
+                                        <input type="text" class="form-control"  id="url" name="url" value="{{$row->banner_URL}}" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="nameImg">ALT (for SEO)</label>
+                                    <input type="text" class="form-control"  id="alt" name="alt">
+                                </div>
+                                <div class="form-group">
+                                    <label for="nameImg">Name image <span class="required">*</span></label>
+                                    <input type="text" class="form-control" value="{{pathinfo(@$row->banner_name, PATHINFO_FILENAME)}}" id="nameImg" name="banner_name_name" required>
+                                    {{-- @if (@$row->product_image) readonly @endif  --}}
+                                </div>
+                                <div class="form-group">
+                                    <img class="img-thumbnail imagePreview"@if(!isset($row->banner_name)) style="display: none;" @endif src="{{ URL::asset('upload/home/'.@$row->banner_name) }}" data-holder-rendered="true">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                             <label for="nameImg">URL <span class="required">*</span></label>
@@ -95,10 +112,6 @@
                         </div>     
                     </div>
                 </div>
-                                 
-                
-                
-                
             </div>
             <div class="col-sm-12">
                 <div class="form-group">
