@@ -83,7 +83,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="nameImg">ALT (for SEO)</label>
-                                    <input type="text" class="form-control"  id="alt" name="alt">
+                                    <input type="text" class="form-control"  id="alt" name="alt" value="{{$row->banner_alt}}" >
                                 </div>
                                 <div class="form-group">
                                     <label for="nameImg">Name image <span class="required">*</span></label>
