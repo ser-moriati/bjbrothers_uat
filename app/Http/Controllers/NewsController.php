@@ -51,7 +51,6 @@ class NewsController extends Controller
         $data['action'] = "insert";
         $data['product'] = DB::table('products')->select('id','product_code','product_name')->whereNotNull('product_name')->orderBy('product_code','DESC')->get();
         $recommend_product = array();
-        $recommend = DB::table('recommend_product')->get();
         $data['recommend_product'] = $recommend_product;
 
         return view('admin/news/add', $data);

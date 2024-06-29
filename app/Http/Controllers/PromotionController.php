@@ -51,12 +51,6 @@ class PromotionController extends Controller
         $data['action'] = "insert";
         $data['product'] = DB::table('products')->select('id','product_code','product_name')->whereNotNull('product_name')->orderBy('product_code','DESC')->get();
         $recommend_product = array();
-        $recommend = DB::table('recommend_product')->get();
-        if(!empty($recommend)){
-            foreach ($recommend as $key => $_recommend) {
-                array_push($recommend_product, $_recommend->recommend_ref_product);
-            }
-        }
         $data['recommend_product'] = $recommend_product;
         return view('admin/promotions/add', $data);
     }
@@ -75,6 +69,12 @@ class PromotionController extends Controller
         $data['product'] = DB::table('products')->select('id','product_code','product_name')->whereNotNull('product_code')->orderBy('product_code','DESC')->get();
         
         $recommend_product = array();
+        $recommend = DB::table('recommend_product')->where('recommend_ref_article',$id)->get();
+        if(!empty($recommend)){
+            foreach ($recommend as $key => $_recommend) {
+                array_push($recommend_product, $_recommend->recommend_ref_product);
+            }
+        }
         $data['recommend_product'] = $recommend_product;
         
         return view('admin/promotions/add', $data);
