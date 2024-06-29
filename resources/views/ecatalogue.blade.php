@@ -63,7 +63,7 @@
                         <div class="col-lg-4 col-md-4 col-6">
                             <a class="downloadBox" href="{{URL::asset('upload/ecatalogue/pdf/'.$item->ecatalogue_pdf_name)}}" target="_blank">
                                 <div class="download-img" style="
-                                background-image: url(upload/ecatalogue/{{$item->ecatalogue_image}});
+                                background-image: url(<?php echo asset('upload/ecatalogue').'/'.$item->ecatalogue_image; ?>);
                                 background-position: center;
                                 background-size: cover;">
                                     <div class="hover-icon">
