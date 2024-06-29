@@ -189,7 +189,8 @@ class HomeController extends Controller
         try{
             $data3 = [
                 'banner_name'		                =>  $title_image_name,
-                'banner_URL'		                =>  $request->input('url'),
+                'banner_URL'                        =>  $request->input('url'),
+                'banner_alt'		                =>  $request->input('alt'),
                 'banner_created_at'	                =>  date("Y/m/d"),
                 'banner_updated_at'	                =>  new DateTime(),
             ];
@@ -241,12 +242,14 @@ class HomeController extends Controller
             $data3 = [
                 'banner_name'		                =>  $banner_name_name,
                 'banner_URL'		                =>  $request->input('url'), 
+                'banner_alt'                        =>  $request->input('alt'),
                 'banner_updated_at'	                =>  new DateTime(),
             ];
             }else{
                 $data3 = [
                   
                     'banner_URL'		                =>  $request->input('url'), 
+                    'banner_alt'                        =>  $request->input('alt'),
                     'banner_updated_at'	                =>  new DateTime(),
                 ];  
             }
