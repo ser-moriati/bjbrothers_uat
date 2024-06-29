@@ -61,32 +61,39 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-6">
-                                @foreach( $row as $row)
-                                <input type="hidden" name="id" value="{{ $row->banner_id}}">
-                                <div class="form-group">
-                                    <label>Picture <span class="required">* The image size must not exceed 2 MB.</span></label>
-                                    <div class="custom-file">
-                                        <input name="banner_name" type="file" class="custom-file-input" id="customFile" accept="image/*" onchange="imgChange(this)" @empty($row->banner_name) required @endempty >
-                                        <label class="custom-file-label" for="customFile">@isset($row->banner_name) {{$row->banner_name}} @else Choose Picture @endisset</label>
+                            <div class="col-md-12">
+                                <div class="col-md-6">
+                                    @foreach( $row as $row)
+                                    <input type="hidden" name="id" value="{{ $row->banner_id}}">
+                                    <div class="form-group">
+                                        <label>Picture <span class="required">* The image size must not exceed 2 MB.</span></label>
+                                        <div class="custom-file">
+                                            <input name="banner_name" type="file" class="custom-file-input" id="customFile" accept="image/*" onchange="imgChange(this)" @empty($row->banner_name) required @endempty >
+                                            <label class="custom-file-label" for="customFile">@isset($row->banner_name) {{$row->banner_name}} @else Choose Picture @endisset</label>
+                                        </div>
+                                        <span class="required"> &nbsp; Suitable scale 1600 x 650 pixels</span>
                                     </div>
-                                    <span class="required"> &nbsp; Suitable scale 1600 x 650 pixels</span>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                                <label for="nameImg">URL <span class="required">*</span></label>
+                                                <input type="text" class="form-control"  id="url" name="url" value="{{$row->banner_URL}}" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="nameImg">ALT (for SEO)</label>
+                                            <input type="text" class="form-control"  id="alt" name="alt">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="nameImg">Name image <span class="required">*</span></label>
+                                            <input type="text" class="form-control" value="{{pathinfo(@$row->banner_name, PATHINFO_FILENAME)}}" id="nameImg" name="banner_name_name" required>
+                                            {{-- @if (@$row->product_image) readonly @endif  --}}
+                                        </div>
+                                        <div class="form-group">
+                                            <img class="img-thumbnail imagePreview"@if(!isset($row->banner_name)) style="display: none;" @endif src="{{ URL::asset('upload/home/'.@$row->banner_name) }}" data-holder-rendered="true">
+                                        </div>
+                                        @endforeach
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                        <label for="nameImg">URL <span class="required">*</span></label>
-                                        <input type="text" class="form-control"  id="url" name="url" value="{{$row->banner_URL}}" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="nameImg">Name image <span class="required">*</span></label>
-                                    <input type="text" class="form-control" value="{{pathinfo(@$row->banner_name, PATHINFO_FILENAME)}}" id="nameImg" name="banner_name_name" required>
-                                    {{-- @if (@$row->product_image) readonly @endif  --}}
-                                </div>
-                                <div class="form-group">
-                                    <img class="img-thumbnail imagePreview"@if(!isset($row->banner_name)) style="display: none;" @endif src="{{ URL::asset('upload/home/'.@$row->banner_name) }}" data-holder-rendered="true">
-                                </div>
-                                @endforeach
                             </div>
-                          
                         </div>     
                     </div>
                 </div>
