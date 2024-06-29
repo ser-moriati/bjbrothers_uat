@@ -54,19 +54,25 @@
                                             </div>
                                         <span class="required"> &nbsp; Suitable scale 800 x 533 pixels.</span>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="nameImg">Name image <span class="required">*</span></label>
-                                        <input type="text" class="form-control" value="{{pathinfo(@$news->title_image, PATHINFO_FILENAME)}}" id="nameImg" name="title_image_name" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="nameImg">URL <span class="required">*</span></label>
-                                        <input type="text" class="form-control"  id="url" name="url" required>
-                                    </div>
-                                        {{-- <div class="col-md-12"> --}}
-                                            <div class="form-group">
-                                                <img class="img-thumbnail imagePreview"@if(!isset($news->title_image)) style="display: none;" @endif alt="200x200" width="200" src="{{ URL::asset('upload/news/'.@$news->title_image) }}" data-holder-rendered="true">
-                                            </div>
-                                        {{-- </div> --}}
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="nameImg">Name image <span class="required">*</span></label>
+                                            <input type="text" class="form-control" value="{{pathinfo(@$news->title_image, PATHINFO_FILENAME)}}" id="nameImg" name="title_image_name" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="nameImg">URL <span class="required">*</span></label>
+                                            <input type="text" class="form-control"  id="url" name="url" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="nameImg">ALT (for SEO)</label>
+                                            <input type="text" class="form-control"  id="alt" name="alt">
+                                        </div>
+                                            {{-- <div class="col-md-12"> --}}
+                                                <div class="form-group">
+                                                    <img class="img-thumbnail imagePreview"@if(!isset($news->title_image)) style="display: none;" @endif alt="200x200" width="200" src="{{ URL::asset('upload/news/'.@$news->title_image) }}" data-holder-rendered="true">
+                                                </div>
+                                            {{-- </div> --}}
+                                        </div>
                                     </div>
                                 </div>
                                     

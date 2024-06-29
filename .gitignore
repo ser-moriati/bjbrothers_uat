@@ -29,3 +29,4 @@
 /storage/logs
 /Database Backup
 .env
+storage/logs/laravel.log
