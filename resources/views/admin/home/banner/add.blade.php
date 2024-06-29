@@ -42,15 +42,34 @@
                 <div class="card">
                     <div class="card-body">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Picture <span class="required">* The image size must not exceed 2 MB.</span></label>
-                                    <div class="custom-file">
-                                        <input name="title_image" type="file" class="custom-file-input" id="customFile" accept="image/*" onchange="imgChange(this)" value="{{@$news->title_image}}" @empty($news->title_image) required @endempty >
-                                        <label class="custom-file-label" for="customFile">@isset($news->title_image) {{$news->title_image}} @else Choose Picture @endisset</label>
-                                    </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Picture <span class="required">* The image size must not exceed 2 MB.</span></label>
+                                        <div class="custom-file">
+                                            <input name="title_image" type="file" class="custom-file-input" id="customFile" accept="image/*" onchange="imgChange(this)" value="{{@$news->title_image}}" @empty($news->title_image) required @endempty >
+                                            <label class="custom-file-label" for="customFile">@isset($news->title_image) {{$news->title_image}} @else Choose Picture @endisset</label>
+                                        </div>
                                     <span class="required"> &nbsp; Suitable scale 800 x 533 pixels.</span>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="nameImg">Name image <span class="required">*</span></label>
+                                        <input type="text" class="form-control" value="{{pathinfo(@$news->title_image, PATHINFO_FILENAME)}}" id="nameImg" name="title_image_name" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="nameImg">URL <span class="required">*</span></label>
+                                        <input type="text" class="form-control"  id="url" name="url" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="nameImg">ALT (for SEO)</label>
+                                        <input type="text" class="form-control"  id="alt" name="alt">
+                                    </div>
+                                    <div class="form-group">
+                                        <img class="img-thumbnail imagePreview"@if(!isset($news->title_image)) style="display: none;" @endif alt="200x200" width="200" src="{{ URL::asset('upload/news/'.@$news->title_image) }}" data-holder-rendered="true">
+                                    </div>
+                                  </div>
+                                  <span class="required"> &nbsp; Suitable scale 800 x 533 pixels.</span>
                                 </div>
                             </div>
                             <div class="col-md-6">
