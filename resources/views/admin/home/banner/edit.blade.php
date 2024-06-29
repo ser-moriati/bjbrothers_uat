@@ -86,7 +86,7 @@
                                         <input type="text" class="form-control"  id="url" name="url" value="{{$row->banner_URL}}" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="nameImg">ALT (for SEO)</label>
+                                    <label for="nameImg">ALT (for seo)</label>
                                     <input type="text" class="form-control"  id="alt" name="alt" value="{{$row->banner_alt}}" >
                                 </div>
                                 @endforeach
