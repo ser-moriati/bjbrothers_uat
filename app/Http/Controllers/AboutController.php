@@ -95,8 +95,8 @@ class AboutController extends Controller
     {
         try{
             $about_company = new AboutCompany;
-            $about_company->about_company_year = $request->about_company_year;
-            $about_company->about_company_detail = $request->about_company_detail;
+            $about_company->about_company_year = (!empty($request->about_company_year) ? $request->about_company_year : '');
+            $about_company->about_company_detail = (!empty($request->about_company_detail) ? $request->about_company_detail : '');
             $about_company->save();
 
             DB::commit();
@@ -121,8 +121,8 @@ class AboutController extends Controller
         try{
 
             $about_company = AboutCompany::find($id);
-            $about_company->about_company_year = $request->about_company_year;
-            $about_company->about_company_detail = $request->about_company_detail;
+            $about_company->about_company_year = (!empty($request->about_company_year) ? $request->about_company_year : '');
+            $about_company->about_company_detail = (!empty($request->about_company_detail) ? $request->about_company_detail : '');
             $about_company->save();
 
             DB::commit();
@@ -136,10 +136,10 @@ class AboutController extends Controller
         try{
             // return 45;
             $detail = AboutService::find($id);
-            $detail->detail = $request->detail;
-            $detail->detail_2 = $request->detail_2;
-            $detail->detail_3 = $request->detail_3;
-            $detail->detail_4 = $request->detail_4;
+            $detail->detail = (!empty($request->detail) ? $request->detail : '');
+            $detail->detail_2 = (!empty($request->detail_2) ? $request->detail_2 : '');
+            $detail->detail_3 = (!empty($request->detail_3) ? $request->detail_3 : '');
+            $detail->detail_4 = (!empty($request->detail_4) ? $request->detail_4 : '');
             $detail->save();
 
             DB::commit();
@@ -231,7 +231,7 @@ class AboutController extends Controller
     {
         try{
             $about_aboutcatecustomer = new AboutCategoryCustomer;
-            $about_aboutcatecustomer->about_category_customer_name = $request->about_category_customer_name;
+            $about_aboutcatecustomer->about_category_customer_name = (!empty($request->about_category_customer_name) ? $request->about_category_customer_name : '');
             $about_aboutcatecustomer->save();
 
             DB::commit();
@@ -256,7 +256,7 @@ class AboutController extends Controller
         try{
 
             $about_aboutcatecustomer = AboutCategoryCustomer::find($id);
-            $about_aboutcatecustomer->about_category_customer_name = $request->about_category_customer_name;
+            $about_aboutcatecustomer->about_category_customer_name = (!empty($request->about_category_customer_name) ? $request->about_category_customer_name : '');
             $about_aboutcatecustomer->save();
 
             DB::commit();
@@ -336,9 +336,9 @@ class AboutController extends Controller
         }
         try{
             $about_aboutcustomer = new AboutCustomer;
-            $about_aboutcustomer->about_customer_name = $request->about_customer_name;
+            $about_aboutcustomer->about_customer_name = (!empty($request->about_customer_name) ? $request->about_customer_name : '');
             $about_aboutcustomer->about_customer_image = $about_customer_image_name;
-            $about_aboutcustomer->ref_category_id = $request->category_id;
+            $about_aboutcustomer->ref_category_id = (!empty($request->category_id) ? $request->category_id : '');
             $about_aboutcustomer->save();
 
             if(@$file) $file->move($path, $about_customer_image_name);
@@ -381,11 +381,11 @@ class AboutController extends Controller
                 }
             }
 
-            $about_aboutcustomer->about_customer_name = $request->about_customer_name;
+            $about_aboutcustomer->about_customer_name = (!empty($request->about_customer_name) ? $request->about_customer_name : '');
             if($about_customer_image_name){
                 $about_aboutcustomer->about_customer_image = $about_customer_image_name;
             }
-            $about_aboutcustomer->ref_category_id = $request->category_id;
+            $about_aboutcustomer->ref_category_id = (!empty($request->category_id) ? $request->category_id : '');
             $about_aboutcustomer->save();
 
             if(@$file) {
