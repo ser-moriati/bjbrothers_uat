@@ -321,6 +321,9 @@ class ProductController extends Controller
         if(@Auth::guard('member')->user()->ref_role_id){
             $role_id = Auth::guard('member')->user()->ref_role_id;
         }
+
+        dd($product);
+        
         foreach($product as $pro){
             $role_id == 0 ;
             $sale = DB::table('productsku')
