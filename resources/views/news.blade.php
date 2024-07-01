@@ -45,7 +45,7 @@
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-12">
                             <div class="img-width">
-                                <img src="{{asset('public/upload/news/'.$news_pin->title_image)}}">
+                                <img src="{{asset('upload/news/'.$news_pin->title_image)}}">
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-12">
@@ -94,7 +94,7 @@
                         @foreach ($news as $prom)                            
                         <div class="col-lg-4 col-md-4 col-12">
                             <div class="projectBox">
-                                <a href="{{url('news/'.$prom->id)}}"><img src="{{asset('public/upload/news/'.$prom->title_image)}}"></a>
+                                <a href="{{url('news/'.$prom->id)}}"><img src="{{asset('upload/news/'.$prom->title_image)}}"></a>
                                 <a class="project-topic" href="{{url('news/'.$prom->id)}}">
                                     <p>{{$prom->title}}</p>
                                 </a>
