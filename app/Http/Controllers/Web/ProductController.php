@@ -321,7 +321,9 @@ class ProductController extends Controller
         if(@Auth::guard('member')->user()->ref_role_id){
             $role_id = Auth::guard('member')->user()->ref_role_id;
         }
-                
+
+        dd($product);
+        
         foreach($product as $pro){
             $role_id == 0 ;
             $sale = DB::table('productsku')
@@ -354,7 +356,7 @@ class ProductController extends Controller
         $data['search'] = @$request->s;
         $data['product'] = $product;
         $data['brand'] = $brand;
-        
+
         return view('newarrival', $data);
     }
     public function product_recommended(Request $request){
