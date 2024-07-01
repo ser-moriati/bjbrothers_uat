@@ -80,7 +80,6 @@
                 </div>
 
                 @include('inc_product_search')
-                <?php //dd($product); ?>
                 <!---------- PRODUCT - PART ---------->
                 <div class="row">
                     <div class="col">

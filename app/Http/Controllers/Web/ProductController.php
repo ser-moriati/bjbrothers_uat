@@ -311,7 +311,7 @@ class ProductController extends Controller
 
     public function newarrival(Request $request){
         $data['categorys'] = Category::orderBy('sort','ASC')->get();
-        $product = Product::where('product_new','1')->orderBy('id','DESC');
+        $product = Product::where('product_new','Y')->orderBy('id','DESC');
         if(@$request->s){
             $product = $product->where('product_name','LIKE','%'.$request->s.'%')->orWhere('product_code','LIKE','%'.$request->s.'%');    
         }
@@ -322,8 +322,7 @@ class ProductController extends Controller
             $role_id = Auth::guard('member')->user()->ref_role_id;
         }
 
-        dd($product);
-        
+
         foreach($product as $pro){
             $role_id == 0 ;
             $sale = DB::table('productsku')
